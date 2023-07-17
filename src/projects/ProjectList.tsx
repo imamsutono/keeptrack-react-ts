@@ -1,4 +1,5 @@
 import { Project } from './Project';
+import ProjectCard from './ProjectCard';
 
 interface ProjectListProps {
   projects: Project[];
@@ -6,18 +7,9 @@ interface ProjectListProps {
 
 const ProjectList = ({ projects }: ProjectListProps) => (
   <div className="row">
-    {projects.map(({ budget, description, id, imageUrl, name }) => (
-      <div key={id} className="cols-sm">
-        <div className="card">
-          <img src={imageUrl} alt={name} />
-          <section className="section dark">
-            <h5 className="strong">
-              <strong>{name}</strong>
-            </h5>
-            <p>{description}</p>
-            <p>Budget: {budget.toLocaleString()}</p>
-          </section>
-        </div>
+    {projects.map(project => (
+      <div key={project.id} className="cols-sm">
+        <ProjectCard project={project} />
       </div>
     ))}
   </div>
