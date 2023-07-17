@@ -2,15 +2,18 @@ import { Project } from "./Project"
 
 interface IProps {
   project: Project;
+  onEdit: (project: Project) => void;
 }
 
 const formatDescription = (description: string): string => (
   `${description.substring(0, 60)}...`
 );
 
-const ProjectCard: React.FC<IProps> = ({ project }) => {
+const ProjectCard: React.FC<IProps> = ({
+  project, onEdit
+}) => {
   const handleEditClick = (projectBeingEdited: Project) => {
-    console.log(projectBeingEdited);
+    onEdit(projectBeingEdited);
   };
   
   return (
