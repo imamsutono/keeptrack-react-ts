@@ -1,10 +1,16 @@
+import { Fragment, useState } from "react";
 import { MOCK_PROJECTS } from "./MockProjects";
 import { Project } from "./Project";
 import ProjectList from "./ProjectList";
 
-const ProjectsPage = () => {
+const ProjectsPage: React.FC = () => {
+  const [projects, setProjects] = useState<Project[]>(MOCK_PROJECTS);
+
   const saveProject = (project: Project) => {
-    console.log('Saving project: ', project);
+    let updatedProjects = projects.map((p: Project) => (
+      p.id === project.id ? project : p
+    ));
+    setProjects(updatedProjects);
   };
   
   return (
@@ -12,7 +18,7 @@ const ProjectsPage = () => {
       <h1>Projects</h1>
       <ProjectList
         onSave={saveProject}
-        projects={MOCK_PROJECTS}
+        projects={projects}
       />
     </>
   );

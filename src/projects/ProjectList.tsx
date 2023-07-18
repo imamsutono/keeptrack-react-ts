@@ -27,6 +27,7 @@ const ProjectList: React.FC<ProjectListProps> = ({
         <div key={project.id} className="cols-sm">
           {project === projectBeingEdited ? (
             <ProjectForm
+              initialProject={project}
               onSave={onSave}
               onCancel={cancelEdit}
             />
